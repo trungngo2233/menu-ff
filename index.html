@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MENU VIP V1</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #001100, #000000);
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      text-shadow: 0 0 5px #00ff00;
+    }
+    .section {
+      background-color: rgba(0, 255, 0, 0.05);
+      border: 1px solid #00ff00;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+    .slider {
+      width: 100%;
+    }
+    .toggle {
+      display: inline-block;
+      position: relative;
+      width: 60px;
+      height: 30px;
+      margin: 10px;
+    }
+    .toggle input {
+      display: none;
+    }
+    .slider-toggle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #222;
+      border: 1px solid #0f0;
+      transition: 0.4s;
+      border-radius: 30px;
+    }
+    .slider-toggle:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #0f0;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    .toggle input:checked + .slider-toggle {
+      background-color: #0f0;
+    }
+    .toggle input:checked + .slider-toggle:before {
+      transform: translateX(30px);
+      background: #000;
+    }
+    button {
+      background-color: #00ff00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    select {
+      padding: 8px;
+      background: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 MENU VIP V1</h1>
+
+  <!-- Chọn phiên bản -->
+  <div class="section">
+    <label>Chọn Phiên Bản:</label><br/>
+    <select id="version" onchange="handleVersionChange()">
+      <option value="ff">Free Fire</option>
+      <option value="ffm">Free Fire Max</option>
+      <option value="off" selected>TẮT</option>
+    </select>
+  </div>
+
+  <!-- Khu vực tùy chọn -->
+  <div id="optionsArea">
+    <div class="section">
+      <label>Lock tâm ở phần đầu:</label>
+      <label class="toggle">
+        <input type="checkbox" id="lockdau">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label>Aimlock:</label>
+      <label class="toggle">
+        <input type="checkbox" id="aimlock">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label>Nhẹ tâm:</label>
+      <label class="toggle">
+        <input type="checkbox" id="nhetam">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label>Đầm tâm:</label>
+      <label class="toggle">
+        <input type="checkbox" id="damtam">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label>Aim ảo:</label>
+      <label class="toggle">
+        <input type="checkbox" id="aimao">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label>Fix Rung (0 - 2000):</label><br/>
+      <input type="range" id="fixrung" min="0" max="2000" class="slider">
+    </div>
+
+    <div class="section">
+      <label>Tăng Nhạy (0 - 3000):</label><br/>
+      <input type="range" id="tangnhay" min="0" max="3000" class="slider">
+    </div>
+
+    <div class="section">
+      <label>Mượt máy:</label>
+      <label class="toggle">
+        <input type="checkbox" id="muotmay">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <button onclick="hoanTat()">✅ ĐÃ HOÀN TẤT ✅</button>
+    </div>
+  </div>
+
+  <script>
+    function handleVersionChange() {
+      const selected = document.getElementById("version").value;
+      const options = document.getElementById("optionsArea");
+
+      if (selected === "off") {
+        options.style.display = "none";
+        alert("🛑 Tất cả tính năng đã được tắt.");
+      } else {
+        options.style.display = "block";
+      }
+    }
+
+    function hoanTat() {
+      alert("✅ Menu đã được kích hoạt thành công!");
+    }
+
+    // Chạy khi trang load để ẩn nếu là TẮT
+    window.onload = handleVersionChange;
+  </script>
+</body>
+</html>
